@@ -45,25 +45,3 @@ class Balance
         return $this->balance;
     }    
 }
-
-class MsgError
-{
-    protected $MsgText;
-    protected $MsgCode;
-
-    public function __construct($MsgText, $MsgCode)
-    {
-        $this->MsgText = $MsgText;    
-        $this->MsgCode = $MsgCode;
-    }
-
-    public function getText()
-    {
-        return $this->MsgText;
-    } 
-    
-    public function getCode()
-    {
-        return $this->MsgCode;
-    }  
-}
