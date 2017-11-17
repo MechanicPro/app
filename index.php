@@ -3,6 +3,7 @@
     include 'core/Router.php';
     include 'core/Request.php';
     include 'app/controllers/TransactionsController.php';
+    include 'app/controllers/PagesController.php';
     include 'app/controllers/AuthController.php';
     include 'app/models/Model.php';
     use App\Core\Router;

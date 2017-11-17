@@ -8,8 +8,7 @@ class AuthController
 {
     public function login()
     {
-        $userData = App::get('database')->selectUserFromDB('users', $_GET['login'] ,  $_GET['pswd']);
-
+        $userData = App::get('database')->selectUserFromDB($_GET['login'] ,  $_GET['pswd']);
         if(!empty($userData)){
             $userData['success'] = true;
             session_start();

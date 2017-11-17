@@ -24,7 +24,7 @@ class QueryBuilder
      public function selectBalance($table)
     {        
         $sql = sprintf(
-            'SELECT * FROM %s WHERE id_user = %s',
+            'SELECT balance FROM %s WHERE id_user = %s',
             $table,
             $_SESSION['userData'][0]->id            
         );
@@ -33,13 +33,11 @@ class QueryBuilder
         return $statement->fetch(PDO::FETCH_OBJ);
     }
     
-    public function selectUserFromDB($table, $login, $pswd)
+    public function selectUserFromDB($login, $pswd)
     {       
-        $sql = sprintf(
-            'SELECT * FROM %s WHERE login = \'%s\' and pswd = \'%s\'',
-            $table,
-            $login,
-            $pswd            
+        $sql = sprintf('SELECT * FROM users WHERE login = \'%s\' and pswd = \'%s\'',            
+                        $login,
+                        $pswd            
         );
         $statement = $this->pdo->prepare($sql);
         $statement->execute();

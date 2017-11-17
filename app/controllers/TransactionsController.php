@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Core\App;
 use App\Models\Transaction;
-use App\Models\Balance;
+use App\Models\Amount;
 
 class TransactionsController{    
 
@@ -25,37 +25,17 @@ class TransactionsController{
 
     public function writeOff()
     {          
-        $amount = new Balance($_POST['amount']);        
-        if(is_numeric($amount->getBalans()) && strlen($amount->getBalans()) != 0)
+        $amount = new Amount($_POST['amount']);        
+        if(is_numeric($amount->getAmount()) && strlen($amount->getAmount()) != 0)
         {
             $currrent_bal = App::get('database')->selectBalance('transaction');
-            $balance = Abs($currrent_bal->balance) - Abs($amount->getBalans());           
+            $balance = Abs($currrent_bal->balance) - Abs($amount->getAmount());    
             if($balance >= 0)
             {
                 App::get('database')->updateWriteOff('transaction', $balance);        
-                $this->store(Abs($amount->getBalans()));                            
+                $this->store(Abs($amount->getAmount()));                            
             }           
         }
         return redirect('');
-    }
-}
-
-class PagesController
-{
-    public function index()
-    {
-        if (isset($_SESSION['userData'])  && $_SESSION['userData']['success']) 
-        {        
-            $transactions = App::get('database')->selectAllTransaction('transactionlog');
-            $balance = App::get('database')->selectBalance('transaction');
-            $operation = ["transactions" => $transactions,
-                          "balance" => $balance,
-                         ];
-            return view('body/body', compact('operation'));
-        }          
-        else
-        {
-            return view('auth/login');  
-        }	
     }
 }

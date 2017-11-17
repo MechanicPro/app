@@ -31,17 +31,17 @@ class Transaction
     }  
 }
 
-class Balance
+class Amount
 {
-    protected $balance;    
+    protected $amount;    
 
-    public function __construct($balance)
+    public function __construct($amount)
     {
-        $this->balance = $balance;       
+        $this->amount = $amount;       
     }
 
-    public function getBalans()
+    public function getAmount()
     {
-        return $this->balance;
+        return $this->amount;
     }    
 }
