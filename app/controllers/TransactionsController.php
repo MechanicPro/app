@@ -33,18 +33,10 @@ class TransactionsController{
             if($balance >= 0)
             {
                 App::get('database')->updateWriteOff('transaction', $balance);        
-                $this->store(Abs($amount->getBalans()));                  
-                return redirect('');           
-            }
-            else
-            {                            
-                return redirect('');
-            }
-        }  
-        else
-        {            
-            return redirect('');    
+                $this->store(Abs($amount->getBalans()));                            
+            }           
         }
+        return redirect('');
     }
 }
 
