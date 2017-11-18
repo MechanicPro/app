@@ -10,6 +10,7 @@ class TransactionsController{
 
     public function store($amount)
     {
+        sleep(2);
         $trans = new Transaction($_SESSION['userData'][0]->id,
                                  (-1 * $amount),
                                  date("Y-m-d H:i:s")
@@ -24,7 +25,8 @@ class TransactionsController{
     }   
 
     public function writeOff()
-    {          
+    {   
+        sleep(2);
         $amount = new Amount($_POST['amount']);        
         if(is_numeric($amount->getAmount()) && strlen($amount->getAmount()) != 0)
         {
