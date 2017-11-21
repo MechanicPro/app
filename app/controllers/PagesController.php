@@ -5,8 +5,7 @@ use App\Core\App;
 class PagesController
 {
     public function index()
-    {
-        sleep(2);
+    {        
         if (isset($_SESSION['userData'])  && $_SESSION['userData']['success']) 
         {        
             $transactions = App::get('database')->selectAllTransaction('transactionlog');

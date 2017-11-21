@@ -26,8 +26,10 @@ class Router
     }   
         
     public function direct($uri, $requestType)
-    {
-        $rest = explode('/', $uri);                
+    {    
+        $uri = str_replace(".php", "", $uri);
+        $rest = explode('/', $uri);
+        
         if(empty($rest[1]))
         {
             $fg = explode('@', $this->routes[$requestType][$rest[0]]);
