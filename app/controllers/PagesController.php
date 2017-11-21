@@ -8,8 +8,8 @@ class PagesController
     {        
         if (isset($_SESSION['userData'])  && $_SESSION['userData']['success']) 
         {        
-            $transactions = App::get('database')->selectAllTransaction('transactionlog');
-            $balance = App::get('database')->selectBalance('transaction');
+            $transactions = App::get('database')->selectAllTransaction();
+            $balance = App::get('database')->selectBalance();
             $operation = ["transactions" => $transactions,
                           "balance" => $balance,
                          ];

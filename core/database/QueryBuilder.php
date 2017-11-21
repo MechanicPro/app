@@ -9,10 +9,9 @@ class QueryBuilder
         $this->pdo = $pdo;
     }
 
-    public function selectAllTransaction($table)
+    public function selectAllTransaction()
     {  
-        $sql = sprintf('SELECT * FROM %s WHERE id_user = %s ORDER BY date_oper DESC',
-                        $table,
+        $sql = sprintf('SELECT * FROM transactionlog WHERE id_user = %s ORDER BY date_oper DESC',                        
                         $_SESSION['userData'][0]->id            
                       );
         $statement = $this->pdo->prepare($sql);
@@ -20,10 +19,9 @@ class QueryBuilder
         return $statement->fetchAll(PDO::FETCH_CLASS);
     }
 
-     public function selectBalance($table)
+     public function selectBalance()
     {        
-        $sql = sprintf('SELECT balance FROM %s WHERE id_user = %s',
-                        $table,
+        $sql = sprintf('SELECT balance FROM transaction WHERE id_user = %s',                        
                         $_SESSION['userData'][0]->id            
                       );
         $statement = $this->pdo->prepare($sql);
@@ -42,12 +40,11 @@ class QueryBuilder
         return $statement->fetchAll(PDO::FETCH_CLASS);
     }
 
-    public function insertIntoDatabase($table, $parameters)
+    public function insertIntoDatabase($parameters)
     {
         if(!empty($parameters))
         {
-            $sql = sprintf('insert into %s (%s) values (%s)',
-                            $table,
+            $sql = sprintf('insert into transactionlog (%s) values (%s)',                            
                             implode(', ', array_keys($parameters)),
                             ':' . implode(', :', array_keys($parameters))    
                           );
