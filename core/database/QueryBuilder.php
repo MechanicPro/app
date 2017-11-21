@@ -11,11 +11,10 @@ class QueryBuilder
 
     public function selectAllTransaction($table)
     {  
-        $sql = sprintf(
-            'SELECT * FROM %s WHERE id_user = %s ORDER BY date_oper DESC',
-            $table,
-            $_SESSION['userData'][0]->id            
-        );
+        $sql = sprintf('SELECT * FROM %s WHERE id_user = %s ORDER BY date_oper DESC',
+                        $table,
+                        $_SESSION['userData'][0]->id            
+                      );
         $statement = $this->pdo->prepare($sql);
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_CLASS);
@@ -23,11 +22,10 @@ class QueryBuilder
 
      public function selectBalance($table)
     {        
-        $sql = sprintf(
-            'SELECT balance FROM %s WHERE id_user = %s',
-            $table,
-            $_SESSION['userData'][0]->id            
-        );
+        $sql = sprintf('SELECT balance FROM %s WHERE id_user = %s',
+                        $table,
+                        $_SESSION['userData'][0]->id            
+                      );
         $statement = $this->pdo->prepare($sql);
         $statement->execute();
         return $statement->fetch(PDO::FETCH_OBJ);
@@ -38,7 +36,7 @@ class QueryBuilder
         $sql = sprintf('SELECT * FROM users WHERE login = \'%s\' and pswd = \'%s\'',            
                         $login,
                         $pswd            
-        );
+                      );
         $statement = $this->pdo->prepare($sql);
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_CLASS);
@@ -58,12 +56,11 @@ class QueryBuilder
         }        
     }
 
-    public function updateWriteOff($table, $amount)
+    public function updateWriteOff($amount)
     {        
-        if(strlen($amount) != 0 && !empty($table))
+        if(strlen($amount) != 0)
         {
-            $sql = sprintf('update %s set balance = %s where id_user = %s',
-                            $table,
+            $sql = sprintf('update transaction set balance = %s where id_user = %s',                            
                             $amount,
                             $_SESSION['userData'][0]->id    
                           );
