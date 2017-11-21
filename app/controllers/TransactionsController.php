@@ -28,7 +28,7 @@ class TransactionsController
         {
             $currrent_bal = App::get('database')->selectBalance('transaction');
             $balance = Abs($currrent_bal->balance) - Abs($amount->getAmount());    
-            if($balance < 0.)
+            if($balance != ABS($balance))
             {
                return redirect('');                            
             }  
