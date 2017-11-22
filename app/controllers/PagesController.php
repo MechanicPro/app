@@ -1,15 +1,21 @@
 <?php
 namespace App\Controllers;
-use App\Core\App;
 
 class PagesController
 {
-    public function index()
+    protected $qb;
+    
+    public function __construct()
     {        
+        $this->qb = getQB();       
+    }  
+    
+    public function index()
+    {         
         if (isset($_SESSION['userData'])  && $_SESSION['userData']['success']) 
         {        
-            $transactions = App::get('database')->selectAllTransaction();
-            $balance = App::get('database')->selectBalance();
+            $transactions = $this->qb->selectAllTransaction();
+            $balance = $this->qb->selectBalance();
             $operation = ["transactions" => $transactions,
                           "balance" => $balance,
                          ];

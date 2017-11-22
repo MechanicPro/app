@@ -8,8 +8,15 @@ use App\Core\App;
 
 App::bind('config', require 'config.php');
 session_start();
-App::bind('database', new QueryBuilder(Connection::make(App::get('config')['database'])));
+$QB = new QueryBuilder(Connection::make(App::get('config')['database']));
+App::bind('database', $QB);
 session_write_close();
+
+function getQB()
+{      
+    global $QB;
+    return $QB;
+}
 
 function view($name, $data = [])
 {
