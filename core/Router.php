@@ -2,6 +2,13 @@
 
 namespace App\Core;
 
+if (!defined ( 'ZAPERTO' ))
+{
+	exit ( "No such file" );
+}
+
+
+
 class Router
 {
     public $routes = ['GET' => [],

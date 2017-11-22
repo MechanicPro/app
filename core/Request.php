@@ -1,6 +1,10 @@
 <?php
-
 namespace App\Core;
+
+if (!defined ( 'ZAPERTO' ))
+{
+	exit ( "No such file" );
+}
 
 class Request
 {	

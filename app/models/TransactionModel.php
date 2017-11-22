@@ -1,6 +1,10 @@
 <?php
-
 namespace App\Models;
+
+if (!defined ( 'ZAPERTO' ))
+{
+	exit ( "No such file" );
+}
 
 class Transaction
 {    

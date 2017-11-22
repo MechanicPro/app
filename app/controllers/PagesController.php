@@ -1,6 +1,11 @@
 <?php
 namespace App\Controllers;
 
+if (!defined ( 'ZAPERTO' ))
+{
+	exit ( "No such file" );
+}
+
 class PagesController
 {
     protected $qb;

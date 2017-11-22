@@ -1,14 +1,23 @@
 <?php
-
 namespace App\Controllers;
 
-use App\Core\App;
-
+if (!defined ( 'ZAPERTO' ))
+{
+	exit ( "No such file" );
+}
 class AuthController
 {
+    protected $qb;
+    
+    public function __construct()
+    {        
+        $this->qb = getQB();       
+    }  
     public function login()
     {
-        $userData = App::get('database')->selectUserFromDB($_GET['login'] ,  $_GET['pswd']);
+        $input_log = $this->verificationTEXT($_POST['login']);
+        $input_pas = $this->verificationTEXT($_POST['pswd']);
+        $userData = $this->qb->selectUserFromDB($input_log, $input_pas);
         if(!empty($userData)){
             $userData['success'] = true;
             session_start();
@@ -16,7 +25,15 @@ class AuthController
             session_write_close();            
             return redirect('');
         }
-    }    
+    }
+
+    public function verificationTEXT($text)
+    {
+       $input_text = strip_tags($text);
+       $input_text = htmlspecialchars($input_text);
+       $input_text = mysql_escape_string($input_text);
+       return  $input_text;
+    }
 
     public function logout()
     {

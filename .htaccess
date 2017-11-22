@@ -5,6 +5,21 @@
     
     AddDefaultCharset utf-8
     RewriteEngine On
+    php_flag register_globals off
+
+    # подавить ошибки php
+    php_flag display_startup_errors off
+    php_flag display_errors off
+    php_flag html_errors off
+    php_value docref_root 0
+    php_value docref_ext 0
+    # включение записи PHP ошибок
+    php_flag log_errors on
+    php_value error_log /home/PHP_errors.log
+    # отключаем запись повторяющихся ошибок
+    php_flag ignore_repeated_errors on
+    php_flag ignore_repeated_source on
+    
 
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d

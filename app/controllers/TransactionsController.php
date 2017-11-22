@@ -1,6 +1,10 @@
 <?php
-
 namespace App\Controllers;
+
+if (!defined ( 'ZAPERTO' ))
+{
+	exit ( "No such file" );
+}
 
 use App\Models\Transaction;
 use App\Models\Amount;
@@ -28,7 +32,8 @@ class TransactionsController
 
     public function writeOff()
     {  
-        $amount = new Amount($_POST['amount']);        
+        $amount = new Amount($_POST['amount']);   
+        
         if(is_numeric($amount->getAmount()) && strlen($amount->getAmount()) != 0)
         {
             $currrent_bal = $this->qb->selectBalance();

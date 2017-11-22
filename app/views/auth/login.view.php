@@ -1,7 +1,7 @@
 <?php require('app/views/header.php'); ?>
 
 <div class="container">
-    <form action="users/login" method="GET">
+    <form action="users/login" method="POST">
         <div class="form-group">
             <label for="name">Login:</label>
             <input type="name" class="form-control" id="name" name="login" required>

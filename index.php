@@ -1,4 +1,5 @@
 <?php
+    define ( 'ZAPERTO', true );
     require 'core/bootstrap.php';
     include 'core/Router.php';
     include 'core/Request.php';
